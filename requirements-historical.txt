@@ -1,0 +1,5 @@
+# Python 3.7.16 only. Original exact-replay evidence used Windows/MSC.
+# Matching versions on another platform need not reproduce floating-point bits.
+numpy==1.21.6
+scipy==1.7.3
+six==1.16.0

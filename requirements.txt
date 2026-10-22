@@ -1,0 +1,6 @@
+# Validated modern execution environment: Python 3.10.12.
+numpy==1.26.4
+scipy==1.15.3
+six==1.17.0
+matplotlib==3.7.5
+pypdf==6.10.0

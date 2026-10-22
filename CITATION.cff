@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: "If you use this code or the accompanying experimental data, please cite the paper below."
+type: software
+title: "ARTCFR: Adaptive Reward Transformation for Regret Minimization"
+version: 2026.10.22
+authors:
+  - family-names: Ren
+    given-names: Hang
+  - family-names: Wu
+    given-names: Yulin
+  - family-names: Qi
+    given-names: Shuhan
+  - family-names: Zhang
+    given-names: Jiajia
+  - family-names: Sun
+    given-names: Xiaozhen
+  - family-names: Ma
+    given-names: Tianzi
+  - family-names: Wang
+    given-names: Xuan
+preferred-citation:
+  type: article
+  title: "Efficient Last-Iterate Convergence in Regret Minimization via Adaptive Reward Transformation"
+  authors:
+    - family-names: Ren
+      given-names: Hang
+    - family-names: Wu
+      given-names: Yulin
+    - family-names: Qi
+      given-names: Shuhan
+    - family-names: Zhang
+      given-names: Jiajia
+    - family-names: Sun
+      given-names: Xiaozhen
+    - family-names: Ma
+      given-names: Tianzi
+    - family-names: Wang
+      given-names: Xuan
+  journal: Journal of Machine Learning Research
+  volume: "27"
+  year: 2026
+  notes: "Accepted manuscript 24-2008."
