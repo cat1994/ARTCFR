@@ -38,7 +38,7 @@ def init_efg(num_ranks=3,
                 return 2 * hand_combinations
             return 4 * hand_combinations
         if i == board and j == board:
-            return 0  # =0， 算到达概率时避免除以0
+            return 0  # Avoid division by zero in reach-probability calculations.
         elif i == board or j == board or i == j:
             return 4 * rollout_combinations
         return 8 * rollout_combinations

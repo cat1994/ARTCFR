@@ -49,7 +49,7 @@ def init_efg(num_ranks=3,
     rnd_start = []
     num_root = []
     num_leaf = []
-    num_info = 0  # todo: empty set?
+    num_info = 0
     for i in range(deck_size, 0, -1):
         if i == deck_size:
             num_root.append(1)

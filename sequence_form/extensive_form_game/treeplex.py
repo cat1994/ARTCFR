@@ -327,28 +327,24 @@ class TreeplexDomain:
     @staticmethod
     def project_simplex_with_lower_bounds(x, epsilon):
         """
-        将向量x投影到满足 y >= epsilon 且 sum(y) = 1 的简单形上，最小化 ||x - y||_2^2。
+        Project x onto the simplex with lower bounds epsilon in Euclidean norm.
 
-        参数:
-        x (np.ndarray): 输入向量，必须是一个简单形向量（非负且和为1）。
-        epsilon (np.ndarray): 下界向量，必须满足 sum(epsilon) <= 1。
-
-        返回:
-        y (np.ndarray): 投影后的向量，满足 y >= epsilon 且 sum(y) = 1。
+        The result satisfies y >= epsilon and sum(y) = 1. The entries of
+        epsilon must be nonnegative and sum to at most one.
         """
         if not isinstance(x, np.ndarray) or not isinstance(epsilon, np.ndarray):
-            raise ValueError("输入和下界必须是numpy数组。")
+            raise ValueError("The input and lower bounds must be NumPy arrays.")
 
         if x.shape != epsilon.shape:
-            raise ValueError("输入向量和下界向量的形状必须相同。")
+            raise ValueError("The input and lower bounds must have the same shape.")
 
         if np.any(epsilon < 0):
-            raise ValueError("下界向量的所有元素必须非负。")
+            raise ValueError("All lower bounds must be nonnegative.")
 
         if np.sum(epsilon) > 1:
-            raise ValueError("下界向量的元素和必须小于或等于1。")
+            raise ValueError("The lower bounds must sum to at most one.")
 
-        # 步骤1: 变量变换
+        # Shift the lower bounds to zero.
         z = x - epsilon
         shifted_sum = 1 - np.sum(epsilon)
 
@@ -356,20 +352,11 @@ class TreeplexDomain:
             return epsilon.copy()
 
         if shifted_sum < 0:
-            raise ValueError("无法满足sum(y) = 1且y >= epsilon的约束。请检查epsilon的值。")
+            raise ValueError("The lower bounds cannot satisfy sum(y) = 1 and y >= epsilon.")
 
-        # 步骤2: 投影z到新的简单形
+        # Project the shifted vector onto a simplex with the remaining mass.
         def project_to_simplex(v, s=shifted_sum):
-            """
-            投影向量v到{z | z >= 0, sum(z) = s}的简单形上。
-
-            参数:
-            v (np.ndarray): 输入向量。
-            s (float): 目标和。
-
-            返回:
-            np.ndarray: 投影后的向量。
-            """
+            """Project v onto the simplex {z | z >= 0, sum(z) = s}."""
             n = len(v)
             # Sort v in descending order
             u = np.sort(v)[::-1]
@@ -385,7 +372,7 @@ class TreeplexDomain:
 
         z_projected = project_to_simplex(z, shifted_sum)
 
-        # 步骤3: 恢复y
+        # Restore the lower bounds.
         y = z_projected + epsilon
 
         return y
@@ -468,7 +455,7 @@ class TreeplexEntropyProx:
 
     """
     argmin_{x in \Delta} alpha*g'x + beta*D(x, y)
-    从bregman转换成smooth
+    Express the Bregman update using the smooth best response.
 
     """
 

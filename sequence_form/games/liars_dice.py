@@ -116,7 +116,7 @@ def init_efg(num_ranks=3,
         if len(begin[0])>=10:
             pass
         if first_action:
-            # p1 在第一轮的全部可选动作解析
+            # Enumerate all opening bids for player 1.
             while action < num_actions:
                 bit_num_dice = int(action / num_ranks) + 1
                 bit_num_rank = action % num_ranks + 1
@@ -126,7 +126,7 @@ def init_efg(num_ranks=3,
         else:
             while action<num_actions:
 
-                if action == num_actions - 1:  # 解析该动作对应的bit
+                if action == num_actions - 1:
 
                     _build_showdown(actor, bit_num_dice, bit_num_rank, _pn(action))
                 elif action < num_ranks - bit_num_rank:  # increase num rank

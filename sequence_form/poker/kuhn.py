@@ -92,7 +92,7 @@ def init_efg(num_ranks=3,
         if all_negative:
             offset = -3
         A[bet_p1, call_p2] = winner * 2
-        A[bet_p1, fold_p2] = -alpha # 没问题嗷
+        A[bet_p1, fold_p2] = -alpha
         A[check_p1, check_p2] = winner * 1
         A[call_p1, bet_p2] = winner * 2
         A[fold_p1, bet_p2] = alpha

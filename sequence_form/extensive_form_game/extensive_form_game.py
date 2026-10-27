@@ -81,7 +81,7 @@ class ExtensiveFormGame:
         value_x, value_y = self.profile_value(x, y, regularizer_x, regularizer_y)
         br_x, _ = self.domain(0).support(self.utility_for(0, y, regularizer_x))
         br_y, _ = self.domain(1).support(self.utility_for(1, x, regularizer_y))
-        if self._B is not None: # todo: goofspiel no-zero sum game
+        if self._B is not None:
             return br_x - value_x + br_y - value_y, br_x - value_x, br_y - value_y, value_x, value_y
         else:
             return br_x + br_y, br_x - value_x, br_y - value_y, value_x, value_y
@@ -177,7 +177,7 @@ class ExtensiveFormGame:
 
         g = self.utility_for(player, opponent_strategy)
         regrets = self.domain(player).infoset_regrets(g, strategy)
-        return np.sum(regrets * strategy) # todo 这种写法也不对，应该为np.sum(regrets * parent(info))
+        return np.sum(regrets * strategy)
 
     def utility_for(self, player, opponent_strategy, regularizer=0):
         #  A is opponent utility function, so the function returns the gradient which needs to add negative symbol
